@@ -84,6 +84,14 @@ ezcfg::pub_cfg! {
         base_s2: f32,
 }
 
+impl NeuronConfig {
+
+    pub fn read() -> Result<Self, ezcfg::Error> {
+        use ezcfg::Config;
+        <Self as Config>::read()
+    }
+}
+
 #[test]
 fn default() {
     use ezcfg::Config;
