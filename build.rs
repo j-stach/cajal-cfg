@@ -18,7 +18,7 @@ fn select_config() {
     // Global preferences for neuron parameters can be kept in the framework directory.
     let global = home.join(".cajal/neuron.cfg");
 
-    // Default configuration that is packaged with this crate.
+    // Default configuration that is packaged with `cajal`.
     let default = Path::new("neuron.cfg");
 
     let config_path: &Path = 

@@ -5,7 +5,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-ezcfg = "0.1.1"
+ezcfg = "0.1.2"
 
 [package.metadata.includedir]
 files = ["neuron.cfg"]
