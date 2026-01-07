@@ -11,6 +11,6 @@ dependencies = [
 
 [[package]]
 name = "ezcfg"
-version = "0.1.0"
+version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0eb7a66d5402cb1cba625e4025e46972f99aaf7c27ad59b6710bfd41434ac2c2"
+checksum = "91b06e7812d6fddd6365c879441c1e7682871904a57b4c7f50c3e54e71581304"

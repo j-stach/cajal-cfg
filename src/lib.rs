@@ -1,7 +1,7 @@
 
 include!(concat!(env!("OUT_DIR"), "/config.rs"));
 
-ezcfg::cfg! {
+ezcfg::pub_cfg! {
     Config [crate::CONFIG_PATH]
         max_dendrite_branches: usize,
         max_branch_receptors: usize,
