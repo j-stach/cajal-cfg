@@ -1,8 +1,8 @@
 
-include!(concat!(env!("OUT_DIR"), "/config.rs"));
+include!(concat!(env!("OUT_DIR"), "/config_path.rs"));
 
 ezcfg::pub_cfg! {
-    Config [crate::CONFIG_PATH]
+    NeuronConfig [crate::CONFIG_PATH]
         max_dendrite_branches: usize,
         max_branch_receptors: usize,
 
@@ -84,4 +84,12 @@ ezcfg::pub_cfg! {
         base_s2: f32,
 }
 
+#[test]
+fn default() {
+    use ezcfg::Config;
+    assert_eq!(NeuronConfig::PATH, "neuron.cfg");
+    let config = NeuronConfig::read().unwrap();
+    assert_eq!(config.max_dendrite_branches, 5usize);
+    assert_eq!(config.min_potential, -10.0);
+}
 

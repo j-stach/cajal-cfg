@@ -1,3 +1,4 @@
+
 [package]
 name = "cajal-cfg"
 version = "0.1.0"
@@ -5,3 +6,7 @@ edition = "2024"
 
 [dependencies]
 ezcfg = "0.1.1"
+
+[package.metadata.includedir]
+files = ["neuron.cfg"]
+

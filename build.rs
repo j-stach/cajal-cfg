@@ -7,20 +7,18 @@ fn main() {
 
 fn select_config() {
     
-    let home = env::var("HOME").expect("Find home directory");
+    let home = env::var("HOME").expect("Find user's home directory");
     let home = Path::new(&home);
 
-    // Cajal root directory should be in the user's home directory.
-    let cajal = home.join(".cajal");
+    // TODO ANIMUS CONFIG PATH LOCATION RELATIVE TO BUILD
+    // If `cajal` is building to support `animusd`, then the user may want a dedicated `neuron.cfg` file.
+    // In that case, `cajal-cfg` will expect to find it ... Where? 
+    let local = Path::new("./local.cfg");
 
-    // Animus-specific config file:
-    // TODO (This should search the directory where the library is being built.)
-    let local = Path::new("./neuron.cfg");
+    // Global preferences for neuron parameters can be kept in the framework directory.
+    let global = home.join(".cajal/neuron.cfg");
 
-    // User's custom global config:
-    let global = cajal.join("neuron.cfg");
-
-    // Default config provided by crate:
+    // Default configuration that is packaged with this crate.
     let default = Path::new("neuron.cfg");
 
     let config_path: &Path = 
@@ -28,17 +26,16 @@ fn select_config() {
         if local.exists() { local }
         // Use the user's custom global config second:
         else if global.exists() { global.as_path() } 
-        // Use the crate's default config file if all else fails:
+        // Use the crate's default configuration if all else fails:
         else { default };
 
     let config_path = config_path.to_path_buf();
-
-    let config_var = format!("pub const CONFIG_PATH: &str = \"{}\";", config_path.display());
+    let config_const = format!("pub const CONFIG_PATH: &str = \"{}\";", config_path.display());
 
     let out_dir = env::var("OUT_DIR").unwrap();
-    let temp_file = Path::new(&out_dir).join("config.rs");
+    let temp_file = Path::new(&out_dir).join("config_path.rs");
 
-    fs::write(temp_file, config_var)
-        .expect("Write const params to temp file.");
+    fs::write(temp_file, config_const)
+        .expect("Write config path to temp file.");
 }
 
